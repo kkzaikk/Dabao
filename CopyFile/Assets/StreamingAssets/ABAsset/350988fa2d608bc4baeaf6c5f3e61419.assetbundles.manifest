@@ -1,0 +1,22 @@
+ManifestFileVersion: 0
+CRC: 1161506665
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2ccb045e8679b15c9b7244f78b179fd9
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 87d9bc88502f242831024e1a32027ff7
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/ResourcesLib/UI/UISource/B/11000931.png
+- Assets/Resources/UI/Atlas/B/BAtlas.prefab
+- Assets/ResourcesLib/UI/UISource/B/11000932.png
+Dependencies: []
