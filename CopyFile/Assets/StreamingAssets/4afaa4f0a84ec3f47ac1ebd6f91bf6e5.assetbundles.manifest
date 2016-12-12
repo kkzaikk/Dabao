@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 2225244644
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 258ffba62d406c52be87c72e8d88331f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/GameData/A/cc.txt
+- Assets/Resources/GameData/A/aa.txt
+- Assets/Resources/GameData/A/bb.txt
+- Assets/Resources/GameData/A/dd.txt
+Dependencies: []

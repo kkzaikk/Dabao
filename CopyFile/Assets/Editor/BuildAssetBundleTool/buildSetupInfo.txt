@@ -16,7 +16,7 @@ PackDir,Resources
 TargDir,StreamingAssets
 
 --最终生成AB包的文件夹名（为了加载manifeset）
-TargFol,ABAsset
+TargFol,
 
 --生成更新列表txt路径
 VersionPath,ResourcesLib\Resources

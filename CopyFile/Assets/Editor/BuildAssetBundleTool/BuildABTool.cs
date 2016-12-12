@@ -137,7 +137,7 @@ public class BuildAB : Editor
                         _PackDir = Application.dataPath + "/" + spaces[1];
                         break;
                     case "TargDir":
-                        _TargDir = Application.dataPath + "/" + spaces[1];
+                        _TargDir = spaces[1];
                         break;
                     case "ServerPath":
                         _ServerPath = spaces[1];
@@ -254,7 +254,7 @@ public class BuildAB : Editor
     /// <param name="packDir"></param>
     public static void BuildPartCore(string packDir)
     {
-        BuildCore(packDir,_TargDir + "/" + _TargFol, _VersionPath);
+        BuildCore(packDir, Application.dataPath + "/" + _TargDir + "/" + _TargFol, _VersionPath);
     }
 
     /// <summary>
@@ -454,7 +454,16 @@ public class BuildAB : Editor
         }
 
         //加载总的manifest文件
-        AssetBundle ab = AssetBundle.LoadFromFile(outputhPath + "/" + _TargFol);
+        AssetBundle ab = null;
+        if (!string.IsNullOrEmpty(_TargFol))
+        {
+            ab = AssetBundle.LoadFromFile(outputhPath + "/" + _TargFol);
+        }
+        else
+        {
+            ab = AssetBundle.LoadFromFile(outputhPath + _TargDir);
+        }
+
         if (ab != null)
         {
             AssetBundleManifest manifest = ab.LoadAsset<AssetBundleManifest>("assetBundlemanifest");
@@ -498,7 +507,15 @@ public class BuildAB : Editor
                     RenewalFileInfoTmp renewal = d.Value;
                     strBulid += BulidRule(renewal.guidName, renewal.abHash.ToString(), renewal.realPackPath);
                 }
+
                 File.WriteAllText(versionPath + "/" + _VersionName, strBulid.ToString());
+
+                string tmp = Application.dataPath + "/" + _TargDir + "/" + _TargFol + "/" + _VersionName;
+                tmp.Replace("//","/");
+                File.WriteAllText(tmp, strBulid.ToString());
+
+                Debug.Log(_TargDir);
+
             }
             else
             {
@@ -541,6 +558,10 @@ public class BuildAB : Editor
                 }
 
                 File.WriteAllText(versionPath + "/" + _VersionName, strBulid.ToString());
+
+                string tmp = Application.dataPath + "/" + _TargDir + "/" + _TargFol + "/" + _VersionName;
+                tmp.Replace("//", "/");
+                File.WriteAllText(tmp, strBulid.ToString());
 
 
             }
@@ -890,7 +911,7 @@ public class BuildAB : Editor
     public static void BuildQuickAB()
     {
         InitConfig();
-        BuildCore(_PackDir, _TargDir + "/" + _TargFol, _VersionPath);
+        BuildCore(_PackDir, Application.dataPath + "/" + _TargDir + "/" + _TargFol, _VersionPath);
     }
 
     [MenuItem("AB工具/变化打包")]
@@ -929,7 +950,7 @@ public class BuildAB : Editor
     public static void ClearYetBuileAB()
     {
         InitConfig();
-        DeleteFileOrFolder(_TargDir);
+        DeleteFileOrFolder(Application.dataPath + "/" + _TargDir);
 
         AssetDatabase.Refresh();
         AssetDatabase.SaveAssets();
